@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const Todo = ({task, toggleComplete}) => {
+
+const Todo = ({task, toggleComplete , deleteTodo, editTodo}) => { // dont forget to pass the props here as arguments
   return (
     <div className="Todo">
-      <p onClick={()=>{ toggleComplete(task.id)}} className={`${task.completed ? 'completed' :""}`}>{task.task}</p> {/*Toggle complete starts from here*/}
+      <p className={`${task.completed ? 'completed' :""}`} onClick={()=>{ toggleComplete(task.id)}}>{task.task}</p> {/*Toggle complete starts from here*/}
         <div>
-            <FontAwesomeIcon icon={faPenToSquare}/>
-            <FontAwesomeIcon icon={faTrash}/>
+            <FontAwesomeIcon icon={faPenToSquare} onlClick = {()=>editTodo(task.id)}/>
+            <FontAwesomeIcon icon={faTrash} onClick={()=> deleteTodo(task.id)}/>
         </div>
     </div>
   );
